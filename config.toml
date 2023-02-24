@@ -1,0 +1,9 @@
+[database]
+connection = "postgresql://postgres:nostr@localhost:7500/nostr"
+
+[network]
+# Bind to this network address
+address = "[::1]"
+
+# Listen on this port
+port = 50051
