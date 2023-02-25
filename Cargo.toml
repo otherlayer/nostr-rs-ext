@@ -35,6 +35,8 @@ chrono = "0.4.23"
 prometheus = "0.13.3"
 indicatif = "0.17.3"
 nostr = "0.17.0"
+nostr-rs-proto = { path = "../nostr-rs-proto" }
+nostr-rs-plugin = { path = "../nostr-rs-plugin" }
 
 [dev-dependencies]
 

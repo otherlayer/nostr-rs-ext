@@ -3,12 +3,9 @@ use tracing::info;
 
 use tonic::{transport::Server, Request, Response, Status};
 
-use nauthz_grpc::authorization_server::{Authorization, AuthorizationServer};
-use nauthz_grpc::{Decision, EventReply, EventRequest};
+use nostr_rs_proto::nauthz_grpc::authorization_server::{Authorization, AuthorizationServer};
+use nostr_rs_proto::nauthz_grpc::{Event, Decision, EventReply, EventRequest};
 
-pub mod nauthz_grpc {
-    tonic::include_proto!("nauthz");
-}
 
 #[derive(Default)]
 pub struct EventAuthz {
@@ -23,7 +20,7 @@ impl Authorization for EventAuthz {
     ) -> Result<Response<EventReply>, Status> {
         let reply;
         let req = request.into_inner();
-        let event = req.event.unwrap();
+        let event: Event = req.event.unwrap();
         
         let content_prefix: String = event.content.chars().take(40).collect();
         println!("recvd event, [kind={}, origin={:?}, nip05_domain={:?}, tag_count={}, content_sample={:?}]",
@@ -31,13 +28,13 @@ impl Authorization for EventAuthz {
 
         if self.allowed_kinds.contains(&event.kind) {
             println!("This looks fine! (kind={})", event.kind);
-            reply = nauthz_grpc::EventReply {
+            reply = EventReply {
                 decision: Decision::Permit as i32,
                 message: None,
             };
         } else {
             println!("Blocked! (kind={})", event.kind);
-            reply = nauthz_grpc::EventReply {
+            reply = EventReply {
                 decision: Decision::Deny as i32,
                 message: Some(format!("kind {} not permitted", event.kind)),
             };
