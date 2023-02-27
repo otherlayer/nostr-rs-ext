@@ -1,6 +1,29 @@
-[workspace]
+[package]
+name = "nostr-rs-ext"
+version = "0.0.1"
+edition = "2021"
+authors = ["Otherlayer <otherlayer@pm.me>"]
+description = "Extensions (plugins) module for nostr-rs-relay server"
+readme = "README.md"
+homepage = "https://github.com/otherlayer/nostr-rs-ext/"
+repository = "https://github.com/otherlayer/nostr-rs-ext/"
+license = "MIT"
+keywords = ["nostr", "nostr-rs", "relay", "extension", "plugins"]
 
-members = [
-    "welcome",
-    "ext",
-]
+[dependencies]
+tracing = "0.1.36"
+tracing-subscriber = "0.2.0"
+tonic = "0.8.3"
+tokio = { version = "1", features = ["full", "tracing", "signal"] }
+serde = { version = "1.0", features = ["derive"] }
+clap = { version = "4.0.32", features = ["env", "default", "derive"]}
+config = { version = "0.12", features = ["toml"] }
+libloading = "0.7"
+
+nostr-rs-proto = { path = "../nostr-rs-proto" }
+nostr-rs-plugin = { path = "../nostr-rs-plugin" }
+
+[dev-dependencies]
+
+[build-dependencies]
+tonic-build = { version="0.8.3", features = ["prost"] }
