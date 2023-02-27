@@ -2,11 +2,6 @@ use config::{Config, ConfigError, File};
 use serde::{Deserialize, Serialize};
 use tracing::warn;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[allow(unused)]
-pub struct Database {
-    pub connection: String,
-}
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[allow(unused)]
@@ -25,7 +20,6 @@ pub struct Plugins {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[allow(unused)]
 pub struct Settings {
-    pub database: Database,
     pub network: Network,
     pub plugins: Plugins,
 }
@@ -67,15 +61,12 @@ impl Settings {
 impl Default for Settings {
     fn default() -> Self {
         Settings {
-            database: Database {
-		        connection: "".to_owned(),
-            },
             network: Network {
                 port: 50051,
                 address: "0.0.0.0".to_owned(),
             },
             plugins: Plugins { 
-                folder: "plugins".to_owned(), 
+                folder: "plugins".to_owned(),
                 names: vec![],
             },
         }

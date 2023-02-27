@@ -3,6 +3,7 @@ use nostr_rs_proto::nauthz_grpc::{EventRequest, EventReply, Decision};
 
 struct Welcome;
 
+// wip
 impl Plugin for Welcome {
     fn start(&self) {}
 

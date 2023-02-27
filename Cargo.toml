@@ -1,11 +1,10 @@
 [package]
 name = "nostr-rs-ext"
-version = "0.0.1"
+version = "0.1.0"
 edition = "2021"
 authors = ["Otherlayer <otherlayer@pm.me>"]
-description = "Extensions (plugins) module for nostr-rs-relay server"
+description = "gRPC extensions (plugins) server for nostr-rs-relay"
 readme = "README.md"
-homepage = "https://github.com/otherlayer/nostr-rs-ext/"
 repository = "https://github.com/otherlayer/nostr-rs-ext/"
 license = "MIT"
 keywords = ["nostr", "nostr-rs", "relay", "extension", "plugin"]
@@ -20,8 +19,8 @@ clap = { version = "4.0.32", features = ["env", "default", "derive"]}
 config = { version = "0.12", features = ["toml"] }
 libloading = "0.7"
 
-nostr-rs-proto = { path = "../nostr-rs-proto" }
-nostr-rs-plugin = { path = "../nostr-rs-plugin" }
+nostr-rs-proto = "0.1.0"
+nostr-rs-plugin = "0.1.0"
 
 [dev-dependencies]
 

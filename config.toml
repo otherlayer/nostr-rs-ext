@@ -1,6 +1,3 @@
-[database]
-connection = "postgresql://postgres:nostr@localhost:7500/nostr"
-
 [network]
 # Bind to this network address
 address = "[::1]"
