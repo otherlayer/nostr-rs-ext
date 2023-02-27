@@ -17,9 +17,17 @@ pub struct Network {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[allow(unused)]
+pub struct Plugins {
+    pub folder: String,
+    pub names: Vec<String>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[allow(unused)]
 pub struct Settings {
     pub database: Database,
     pub network: Network,
+    pub plugins: Plugins,
 }
 
 impl Settings {
@@ -38,15 +46,18 @@ impl Settings {
 
     fn new_from_default(default: &Settings, config_file_name: &Option<String>) -> Result<Self, ConfigError> {
         let default_config_file_name = "config.toml".to_string();
-        let config: &String = match config_file_name {
-            Some(value) => value,
-            None => &default_config_file_name
+        let config_file: String = match config_file_name {
+            Some(value) => value.to_owned(),
+            None => default_config_file_name
         };
         let builder = Config::builder();
-        let config: Config = builder
-            .add_source(Config::try_from(default)?)
-            .add_source(File::with_name(config))
+        let def = Config::try_from(default)?;
+        let our = File::with_name(&config_file);
+        let config = builder
+            .add_source(def)
+            .add_source(our)
             .build()?;
+
         let settings: Settings = config.try_deserialize()?;
 
         Ok(settings)
@@ -62,6 +73,10 @@ impl Default for Settings {
             network: Network {
                 port: 50051,
                 address: "0.0.0.0".to_owned(),
+            },
+            plugins: Plugins { 
+                folder: "plugins".to_owned(), 
+                names: vec![],
             },
         }
     }

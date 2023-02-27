@@ -1,44 +1,6 @@
-[package]
-name = "nostr-rs-ext"
-version = "0.0.1"
-edition = "2021"
-authors = ["Otherlayer <otherlayer@pm.me>"]
-description = "Extensions module for nostr-rs-relay server"
-readme = "README.md"
-homepage = "https://github.com/otherlayer/nostr-rs-ext/"
-repository = "https://github.com/otherlayer/nostr-rs-ext/"
-license = "MIT"
-keywords = ["nostr"]
+[workspace]
 
-[dependencies]
-clap = { version = "4.0.32", features = ["env", "default", "derive"]}
-tracing = "0.1.36"
-tracing-subscriber = "0.2.0"
-tokio = { version = "1", features = ["full", "tracing", "signal"] }
-prost = "0.11"
-tonic = "0.8.3"
-console-subscriber = "0.1.8"
-futures = "0.3"
-futures-util = "0.3"
-thiserror = "1"
-uuid = { version = "1.1.2", features = ["v4"] }
-config = { version = "0.12", features = ["toml"] }
-serde = { version = "1.0", features = ["derive"] }
-serde_json = {version = "1.0", features = ["preserve_order"]}
-hex = "0.4"
-const_format = "0.2.28"
-regex = "1"
-async-trait = "0.1.60"
-async-std = "1.12.0"
-sqlx = { version ="0.6.2", features=["runtime-tokio-rustls", "postgres", "chrono"]}
-chrono = "0.4.23"
-prometheus = "0.13.3"
-indicatif = "0.17.3"
-nostr = "0.17.0"
-nostr-rs-proto = { path = "../nostr-rs-proto" }
-nostr-rs-plugin = { path = "../nostr-rs-plugin" }
-
-[dev-dependencies]
-
-[build-dependencies]
-tonic-build = { version="0.8.3", features = ["prost"] }
+members = [
+    "welcome",
+    "ext",
+]

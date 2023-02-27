@@ -1,0 +1,12 @@
+[package]
+name = "welcome"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["dylib"]
+name = "welcome"
+
+[dependencies]
+nostr-rs-proto = { path = "../../nostr-rs-proto" }
+nostr-rs-plugin = { path = "../../nostr-rs-plugin" }
