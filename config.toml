@@ -9,8 +9,8 @@ port = 50051
 folder = "plugins"
 
 # folder names in plugins folder
-# eg. nostr/plugins/ | - spam
-#                    | - verify
-#                    | - etc.
+# eg. plugins/ | - spam
+#              | - verify
+#              | - etc.
 # names = [ "spam", "verify" ]
 names = [ "welcome" ]
