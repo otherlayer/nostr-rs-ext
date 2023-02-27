@@ -37,6 +37,8 @@ pub struct ExtPlugin {
 }
 
 impl Plugin for ExtPlugin {
+    fn start(&self) {}
+
     fn name(&self) -> String {
         return self.plugin.name();
     }
@@ -44,6 +46,8 @@ impl Plugin for ExtPlugin {
     fn admit_event(&self, request: &EventRequest) -> EventReply {
         return self.plugin.admit_event(request);
     }
+
+    fn stop(&self) {}
 }
 
 pub async fn load_plugins(plugins_folder: String) -> Vec<ExtPlugin> {

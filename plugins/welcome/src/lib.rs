@@ -4,6 +4,8 @@ use nostr_rs_proto::nauthz_grpc::{EventRequest, EventReply, Decision};
 struct Welcome;
 
 impl Plugin for Welcome {
+    fn start(&self) {}
+
     fn name(&self) -> String {
         return "Welcome".to_owned();
     }
@@ -16,6 +18,8 @@ impl Plugin for Welcome {
             message: Some(format!("Welcome")),
         };
     }
+
+    fn stop(&self) {}
 }
 
 #[no_mangle]

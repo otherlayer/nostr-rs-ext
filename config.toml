@@ -9,7 +9,7 @@ address = "[::1]"
 port = 50051
 
 [plugins]
-folder = "/home/me/nostr/plugins/"
+folder = "plugins"
 
 # folder names in plugins folder
 # eg. nostr/plugins/ | - spam
