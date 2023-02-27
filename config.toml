@@ -14,4 +14,4 @@ folder = "plugins"
 #              | - etc.
 # names = [ "spam", "verify" ]
 # will look in every folder for library file libplugin.so
-names = [ "welcome" ]
+names = []

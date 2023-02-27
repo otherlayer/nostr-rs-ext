@@ -51,22 +51,22 @@ impl Plugin for ExtPlugin {
 }
 
 pub async fn load_plugins(plugins_folder: String) -> Vec<ExtPlugin> {
-    let paths = fs::read_dir(&plugins_folder).ok().unwrap();
-
     let mut plugins: Vec<ExtPlugin> = Vec::new();
 
-    for dir in paths {
-        let dir_path = dir.ok().unwrap().path().display().to_string();
+    if let Ok(paths) = fs::read_dir(&plugins_folder) {
+        for dir in paths {
+            let dir_path = dir.ok().unwrap().path().display().to_string();
 
-        let path = Path::new(&dir_path).join("libplugin.so");
+            let path = Path::new(&dir_path).join("libplugin.so");
 
-        let plugin = get_plugin(path);
+            let plugin = get_plugin(path);
 
-        let n = plugin.name();
+            let n = plugin.name();
 
-        debug!("Plugin: {} loaded", n);
+            debug!("Plugin: {} loaded", n);
 
-        plugins.push(plugin);
+            plugins.push(plugin);
+        }
     }
 
     plugins
